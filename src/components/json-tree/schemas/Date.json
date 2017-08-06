@@ -1,0 +1,5 @@
+{
+  "title": "Date",
+  "type": "string",
+  "format": "date-time"
+}

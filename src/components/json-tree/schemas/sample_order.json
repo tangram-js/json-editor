@@ -1,0 +1,134 @@
+{
+  "title": "Sample Order",
+  "definitions": {
+    "customer": {
+      "title": "Sample Customer",
+      "type": "object",
+      "properties": {
+        "customerNo": {
+          "type": "string",
+          "pattern": "^C[0-9]{4,}$",
+          "default": "C0001"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "age": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "birthday": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "customerNo",
+        "firstName",
+        "lastName"
+      ]
+    },
+    "order-item": {
+      "title": "Sample Order Item",
+      "type": "object",
+      "properties": {
+        "productNo": {
+          "type": "string",
+          "pattern": "^P[0-9]{3,}$"
+        },
+        "quantity": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "unitPrice": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "subtotal": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "productNo",
+        "quantity",
+        "unitPrice"
+      ]
+    },
+    "address": {
+      "title": "Sample Address",
+      "type": "object",
+      "properties": {
+        "street": {
+          "type": "string"
+        },
+        "county": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string",
+          "enum": [
+            "cn",
+            "gr",
+            "fr",
+            "ru",
+            "uk",
+            "us"
+          ]
+        },
+        "zip": {
+          "type": "string",
+          "pattern": "^[0-9]{3,}$"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "street", "city", "country", "zip"
+      ]
+    }
+  },
+  "type": "object",
+  "properties": {
+    "orderNo": {
+      "type": "string",
+      "pattern": "^O[0-9]{4,}$"
+    },
+    "orderDate": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "customer": {
+      "$ref": "#/definitions/customer"
+    },
+    "orderItems": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/order-item"
+      },
+      "minItems": 1,
+      "additionalItems": false
+    },
+    "shippingAddress": {
+      "$ref": "#/definitions/address"
+    },
+    "total": {
+      "type": "integer",
+      "minimum": 1
+    }
+  },
+  "required": [
+    "orderNo",
+    "orderDate",
+    "customer",
+    "orderItems",
+    "shippingAddress",
+    "total"
+  ]
+}
