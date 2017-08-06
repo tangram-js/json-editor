@@ -1,4 +1,4 @@
-# json-schema-editor
+# json-editor
 
 > A schema awareable JSON editor.
 > Develop with Vue.js 2.
