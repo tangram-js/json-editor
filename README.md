@@ -1,8 +1,13 @@
-# json-editor
+# json-schema-editor
 
-> A schema awareable JSON editor
+> A schema awareable JSON editor.
+> Develop with Vue.js 2.
 
-## Build Setup
+## Install
+``` bash
+git clone https://github.com/tangram-js/json-editor.git
+```
+## Build
 
 ``` bash
 # install dependencies
@@ -17,5 +22,3 @@ npm run build
 # build for production and view the bundle analyzer report
 npm run build --report
 ```
-
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
