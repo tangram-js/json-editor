@@ -1,6 +1,6 @@
 # json-editor
 
-> A schema awareable JSON editor.
+> A schema-aware JSON editor.
 > Develop with Vue.js 2.
 
 ## Install
