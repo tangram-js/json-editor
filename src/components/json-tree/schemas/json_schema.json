@@ -1,5 +1,5 @@
 {
-  "description": "JSON schema meta-schema",
+  "title": "JSON schema meta-schema",
   "definitions": {
     "schemaArray": {
       "type": "array",

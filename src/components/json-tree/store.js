@@ -8,6 +8,7 @@ import schemaFunctions from './schemaFunctions'
 
 var selectedNode
 var repository
+var jsonSchema
 
 function generateId () {
   return (new Date()).getTime() + ('000000000' + Math.floor((Math.random() * 10000) + 1)).substr(-4)
@@ -90,7 +91,9 @@ async function retrieveSchemaByName (schemaName) {
   if (repository) {
     try {
       schema = await repository.retrieveSchema(schemaName)
-    } catch (err) {}
+    } catch (err) {
+      console.log(`Retrieve schema (${schemaName}) failure: ${err.message}`)
+    }
   }
   if (schema !== null) return schema
   return await defaultRepository.retrieveSchema(schemaName)
@@ -580,7 +583,8 @@ async function retrieveChildSchema (schema, childName, childValue) {
   if (!childName) return await retrieveSchemaFromValue(childValue)
   if (typeof schema === 'undefined' || schema === null) return await retrieveSchemaFromValue(childValue)
   if (schema.type === 'object') {
-    if (schema.properties) return schema.properties[childName]
+    if (schema.properties && schema.properties[childName]) return schema.properties[childName]
+    if (typeof schema.additionalProperties === 'object') return schema.additionalProperties
   }
   if (schema.type === 'array') {
     if (schema.items) {
@@ -689,9 +693,9 @@ class Store {
 
   async setValue (value, schema, name, renamable) {
     this.schema = schema
-    let srcSchema = await dereferenceSchema(schema)
-    if (value === null) value = generateDefault(srcSchema)
-    this.tree = await populateJsonTree(value, srcSchema, name, renamable)
+    jsonSchema = await dereferenceSchema(schema)
+    if (value === null) value = generateDefault(jsonSchema)
+    this.tree = await populateJsonTree(value, jsonSchema, name, renamable)
     this.tree.selected = true
     this.selectedNode = this.tree
     this.alertMessage = validateWithSchema(this.schema, this.tree.value)
