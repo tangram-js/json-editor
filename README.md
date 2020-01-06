@@ -5,8 +5,6 @@
 > Please reference the [project website](https://json-editor.tangramjs.com) fro detail.
 
 ## Features
-#### Pallet of user schemas
-List of all user schemas, user could select one of them as current schema of JSON document. User could save or update custom schema, load custom schema for editing, and delete custom schema.
 #### Tree View of JSON document
 The structure of JSON document, could expend or collapse at any level.
 #### Context Menu
