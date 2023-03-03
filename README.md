@@ -1,6 +1,6 @@
 # json-editor
 
-> A schema-aware editor for JSON document. It provides a tree view to present the structure of JSON document, user could manipulate the JSON from context menu. It also has a text view to present the content of JSON document, user may edit JSON within.
+> A JSON schema based editor for JSON document. It provides a tree view to present the structure of JSON document, user could manipulate the JSON from context menu. It also has a text view to present the content of JSON document, user may edit JSON within.
 > Develop with Vue.js 2.
 > Please reference the [project website](https://json-editor.tangramjs.com) fro detail.
 
